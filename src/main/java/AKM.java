@@ -1,0 +1,7 @@
+public class AKM extends Weapon {
+
+    public void shot() {
+        System.out.println("Тра-та-та!");
+    }
+
+}
