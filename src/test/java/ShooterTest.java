@@ -19,39 +19,42 @@ public class ShooterTest {
 
         int expectedResult = (3 >= slot && slot >= 0) ?
                 // when:
-                player.shotWithWeapon(slot) : -2;
+                player.shotWithWeapon(slot) : null;
 
         // then:
         Assertions.assertEquals(expectedResult, slot);
 
     }
 
-    @Test
-    public void testConcat_validArgument_success() {
+    @ParameterizedTest
+    @ValueSource(ints = {6})
+    public void testShotWithWeapon(int slot) {
         Player player = new Player();
-        // given:
-        int slot = -1;
-        int expectedResult = -1;
 
-        // when:
-        player.shotWithWeapon(slot);
+        int expectedResult = 6;
 
-        // then:
-        Assertions.assertEquals(expectedResult, slot);
+        Assertions.assertEquals(expectedResult, player.shotWithWeapon(slot));
+        System.out.println("Тест testShotWithWeapon закончен");
     }
+
     @Test
-    public void testWeaponSlots() {
+    public void testGetSlotsCount() {
         Player player = new Player();
-        // given:
-        int slot = 4;
+
         int expectedResult = 4;
 
-        // when:
-        player.getSlotsCount();
+        Assertions.assertEquals(expectedResult, player.getSlotsCount());
+        System.out.println("Тест testGetSlotsCount закончен");
+    }
 
-        // then:
-        Assertions.assertEquals(expectedResult, slot);
-        System.out.println("Тест testWeaponSlots закончен");
+    @ParameterizedTest
+    @ValueSource(strings = {"Танк"})
+    public void testSetWeaponSlots(String newWeapon) {
+        Player player = new Player();
+        int expectedResult = 5;
+        player.setWeaponSlots(newWeapon);
+        Assertions.assertEquals(expectedResult, player.getSlotsCount());
+        System.out.println("Тест testSetWeaponSlots закончен");
     }
 
 }
